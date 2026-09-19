@@ -1,6 +1,15 @@
 # Camera-on demo (2–3 minutes)
 
-Preparation: complete setup, confirm green local status, load two example conversations (answer and essay/artifact). Keep camera visible in recording. Use QuickTime or your preferred recorder with camera overlay. Do not show .env or API keys. The assignment requires your own camera presence and YouTube upload; these cannot be replaced by an agent-generated recording.
+Preparation: complete setup, confirm green local status, load two example conversations (answer and essay/artifact). Keep camera visible in recording. Use `Record Demo.command` from the project root to launch a three-minute macOS screen-and-microphone capture, then enable a camera overlay in the macOS capture controls (or use QuickTime/OBS picture-in-picture). Do not show `.env`, terminals, or API keys. The assignment requires your own camera presence and YouTube upload; these cannot be replaced by an agent-generated recording.
+
+## Recording checklist
+
+- Keep the browser on `http://127.0.0.1:3000`, with the **Ollama · Local** provider selected.
+- Use the built-in screenshot toolbar to capture only the Lenny browser window; turn on microphone, click indicators, and camera overlay.
+- Show one cited answer, one follow-up, a persisted second conversation, a Ship 30 essay, and an HTML or Markdown artifact preview.
+- Show an unsupported question so the evaluator sees the explicit abstention behavior.
+- Do not open `.env`, Docker logs, a terminal, or any view containing credentials.
+- Stop at about 2:45–3:00, check playback, then upload the resulting `.mov` to YouTube as Unlisted unless the evaluator specifies another setting.
 
 0:00–0:20 — “A growth PM needs usable, defensible advice without listening to hundreds of hours of interviews. This assistant retrieves original transcript passages, preserves their source, and turns them into answers and working documents.”
 
