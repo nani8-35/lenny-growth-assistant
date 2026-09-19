@@ -113,4 +113,4 @@ Without `TEST_DATABASE_URL`, the database integration test is explicitly skipped
 
 This is a single-user local deployment, bound to localhost. UUID sessions and metadata are not authentication. Add authentication, ownership checks, TLS, quotas, migrations, backup/restore, and a retention policy before public hosting. Do not expose the internal agent port. PostgreSQL volume backups must be tested before upgrades. The schema initializer is idempotent for first deployment; future schema changes need versioned migrations.
 
-The repository, cloud live test, and camera-on YouTube demo require owner credentials/participation. See `docs/submission-checklist.md`; no unperformed test or upload is represented as complete.
+The public repository is https://github.com/nani8-35/lenny-growth-assistant. A cloud live test requires an Anthropic account with API credit, and the camera-on YouTube demo requires owner participation. See `docs/submission-checklist.md`; no unperformed test or upload is represented as complete.
