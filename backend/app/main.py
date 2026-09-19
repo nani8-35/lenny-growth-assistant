@@ -9,6 +9,9 @@ import httpx
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from pathlib import Path
 from pydantic import BaseModel, Field
 from typing import Literal
 from .config import settings
@@ -234,3 +237,10 @@ async def chat(body: Chat, request: Request):
                     await p.release(conn)
             await asyncio.shield(cleanup())
     return StreamingResponse(stream(),media_type='text/event-stream',headers={'Cache-Control':'no-cache','X-Accel-Buffering':'no'})
+
+web_root=Path('/app/web')
+if web_root.exists():
+    app.mount('/assets', StaticFiles(directory=web_root/'assets'), name='assets')
+    @app.get('/{path:path}', include_in_schema=False)
+    async def spa(path: str):
+        return FileResponse(web_root/'index.html')

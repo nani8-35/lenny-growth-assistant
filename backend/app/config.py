@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     agent_url: str = 'http://localhost:3001'
     default_llm_provider: Literal['ollama', 'anthropic', 'gemini'] = 'ollama'
     retrieval_threshold: float = 0.45
+    retrieval_mode: Literal['vector', 'lexical'] = 'vector'
     top_k: int = 6
     model_timeout: int = 240
     cors_origin: str = 'http://localhost:3000'

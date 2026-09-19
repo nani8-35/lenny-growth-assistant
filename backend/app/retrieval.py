@@ -22,6 +22,22 @@ def contextual_query(question: str, history: list[dict]) -> str:
     return '\n'.join(previous + [question])[-4000:] if previous and followup else question
 
 async def retrieve(conn, query: str) -> list[dict]:
+    if settings().retrieval_mode == 'lexical':
+        rows = await conn.fetch('''
+          SELECT c.id,c.content,c.timestamp_ref,e.title,e.guest,e.source_url,
+                 ts_rank_cd(to_tsvector('english', c.content), websearch_to_tsquery('english', $1)) AS score
+          FROM chunks c JOIN episodes e ON e.id=c.episode_id
+          WHERE to_tsvector('english', c.content) @@ websearch_to_tsquery('english', $1)
+          ORDER BY score DESC LIMIT 24
+        ''', query)
+        selected, counts = [], {}
+        for row in rows:
+            key=row['source_url']
+            if counts.get(key,0)>=2: continue
+            counts[key]=counts.get(key,0)+1
+            selected.append({**dict(row),'id':f'S{len(selected)+1}','chunk_id':row['id']})
+            if len(selected)>=settings().top_k: break
+        return selected
     vector = (await embed([f'search_query: {query}']))[0]
     rows = await conn.fetch('''
       SELECT c.id, c.content, c.timestamp_ref, e.title, e.guest, e.source_url,
