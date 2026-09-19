@@ -4,7 +4,7 @@ export type Artifact={id:string;message_id:string;artifact_type:'markdown'|'html
 export type Session={id:string;title:string;updated_at:string};
 export type User={id:string;name:string;email:string;is_admin:boolean};
 export type AdminUser=User & {created_at:string;conversation_count:number};
-export type Health={ready:boolean;database:boolean;ollama:boolean;agent:boolean;chunks:number;episodes:number;cloud_configured:boolean;gemini_configured?:boolean;embedding_model_ready?:boolean;default_provider?:string;ollama_model?:string;models?:string[]};
+export type Health={ready:boolean;database:boolean;ollama:boolean;agent:boolean;chunks:number;episodes:number;cloud_configured:boolean;gemini_configured?:boolean;embedding_model_ready?:boolean;default_provider?:string;ollama_model?:string;models?:string[];admin_contact?:string};
 const key='lenny-access-token';
 export const accessToken=()=>localStorage.getItem(key)||'';
 export const setAccessToken=(token:string)=>localStorage.setItem(key,token);

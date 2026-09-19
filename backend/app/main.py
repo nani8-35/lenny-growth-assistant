@@ -219,7 +219,7 @@ async def delete_session(session_id: UUID, request: Request):
 
 @app.get('/api/health')
 async def health():
-    result={'database':False,'chunks':0,'episodes':0,'ollama':False,'agent':False,'cloud_configured':False,'gemini_configured':False,'default_provider':settings().default_llm_provider}
+    result={'database':False,'chunks':0,'episodes':0,'ollama':False,'agent':False,'cloud_configured':False,'gemini_configured':False,'default_provider':settings().default_llm_provider,'admin_contact':settings().admin_email}
     try:
         p=await get_pool()
         result.update(database=True,chunks=await p.fetchval('SELECT count(*) FROM chunks'),episodes=await p.fetchval('SELECT count(*) FROM episodes'))
