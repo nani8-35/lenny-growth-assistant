@@ -25,7 +25,11 @@ class OllamaProvider(PiProvider):
 class AnthropicProvider(PiProvider):
     provider='anthropic'
 
+class GeminiProvider(PiProvider):
+    provider='gemini'
+
 def get_provider(name: str) -> LLMProviderInterface:
     if name=='ollama':return OllamaProvider()
     if name=='anthropic':return AnthropicProvider()
+    if name=='gemini':return GeminiProvider()
     raise ValueError('Unknown provider')

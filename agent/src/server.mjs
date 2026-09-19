@@ -3,7 +3,7 @@ import { createAgentSession, AuthStorage, ModelRegistry, DefaultResourceLoader, 
 import { buildPrompt, providerModel } from './prompts.mjs';
 const app = express();
 app.use(express.json({limit:'256kb'}));
-app.get('/health', (_req,res)=>res.json({cloud_configured:Boolean(process.env.ANTHROPIC_API_KEY),ollama_model:process.env.OLLAMA_MODEL||'lenny-growth:8b',agent_sdk:'Pi Coding Agent 0.73.1'}));
+app.get('/health', (_req,res)=>res.json({cloud_configured:Boolean(process.env.ANTHROPIC_API_KEY),gemini_configured:Boolean(process.env.GEMINI_API_KEY),ollama_model:process.env.OLLAMA_MODEL||'lenny-growth:8b',agent_sdk:'Pi Coding Agent 0.73.1'}));
 app.post('/generate', async(req,res)=>{
   let session, timer;
   try {
@@ -11,7 +11,7 @@ app.post('/generate', async(req,res)=>{
     if (typeof message !== 'string' || message.length>8000 || !Array.isArray(sources) || sources.length>6 || !Array.isArray(history)) return res.status(400).json({error:'Invalid generation request'});
     const model=providerModel(provider);
     const authStorage=AuthStorage.inMemory();
-    authStorage.setRuntimeApiKey(provider,provider==='ollama'?'ollama':process.env.ANTHROPIC_API_KEY);
+    authStorage.setRuntimeApiKey(provider,provider==='ollama'?'ollama':provider==='gemini'?process.env.GEMINI_API_KEY:process.env.ANTHROPIC_API_KEY);
     const modelRegistry=ModelRegistry.inMemory(authStorage);
     const settingsManager=SettingsManager.inMemory({compaction:{enabled:false},retry:{enabled:false}});
     const resourceLoader=new DefaultResourceLoader({cwd:process.cwd(),agentDir:'/tmp/lenny-agent-isolated',settingsManager,

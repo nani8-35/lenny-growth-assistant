@@ -29,5 +29,11 @@ export function providerModel(provider, env = process.env) {
     return {id:env.ANTHROPIC_MODEL || 'claude-sonnet-4-5',name:'Anthropic Claude',api:'anthropic-messages',provider:'anthropic',
       baseUrl:'https://api.anthropic.com',reasoning:false,input:['text'],cost:{input:3,output:15,cacheRead:0.3,cacheWrite:3.75},contextWindow:200000,maxTokens:4096};
   }
+  if (provider === 'gemini') {
+    if (!env.GEMINI_API_KEY) throw new Error('GEMINI_API_KEY is not configured');
+    return {id:env.GEMINI_MODEL || 'gemini-3.6-flash',name:'Google Gemini',api:'openai-completions',provider:'gemini',
+      baseUrl:'https://generativelanguage.googleapis.com/v1beta/openai',reasoning:false,input:['text'],cost:{input:0,output:0,cacheRead:0,cacheWrite:0},contextWindow:1048576,maxTokens:4096,
+      compat:{supportsDeveloperRole:false,supportsStore:false,supportsUsageInStreaming:false,maxTokensField:'max_tokens'}};
+  }
   throw new Error('Unknown provider');
 }

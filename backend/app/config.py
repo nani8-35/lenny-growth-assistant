@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     ollama_base_url: str = 'http://localhost:11434'
     embedding_model: str = 'nomic-embed-text'
     agent_url: str = 'http://localhost:3001'
-    default_llm_provider: Literal['ollama', 'anthropic'] = 'ollama'
+    default_llm_provider: Literal['ollama', 'anthropic', 'gemini'] = 'ollama'
     retrieval_threshold: float = 0.45
     top_k: int = 6
     model_timeout: int = 240

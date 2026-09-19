@@ -79,7 +79,7 @@ class NewSession(BaseModel):
 class Chat(BaseModel):
     session_id: UUID
     message: str = Field(min_length=1, max_length=8000)
-    provider: Literal['ollama','anthropic'] | None = None
+    provider: Literal['ollama','anthropic','gemini'] | None = None
     mode: Literal['answer','essay','markdown','html'] = 'answer'
 
 @app.post('/api/sessions', status_code=201)
@@ -111,7 +111,7 @@ async def artifact(artifact_id: UUID):
 
 @app.get('/api/health')
 async def health():
-    result={'database':False,'chunks':0,'episodes':0,'ollama':False,'agent':False,'cloud_configured':False,'default_provider':settings().default_llm_provider}
+    result={'database':False,'chunks':0,'episodes':0,'ollama':False,'agent':False,'cloud_configured':False,'gemini_configured':False,'default_provider':settings().default_llm_provider}
     try:
         p=await get_pool()
         result.update(database=True,chunks=await p.fetchval('SELECT count(*) FROM chunks'),episodes=await p.fetchval('SELECT count(*) FROM episodes'))
@@ -153,6 +153,8 @@ async def chat(body: Chat, request: Request):
             status=await client.get(settings().agent_url+'/health'); status.raise_for_status()
             if provider=='anthropic' and not status.json().get('cloud_configured'):
                 raise HTTPException(503,'Add ANTHROPIC_API_KEY to .env and restart the agent. No automatic fallback is used.')
+            if provider=='gemini' and not status.json().get('gemini_configured'):
+                raise HTTPException(503,'Add GEMINI_API_KEY to .env and restart the agent. No automatic fallback is used.')
         history=[serialize(r) for r in await conn.fetch('SELECT role,content FROM (SELECT role,content,created_at FROM messages WHERE session_id=$1 AND status=$2 ORDER BY created_at DESC LIMIT 8) h ORDER BY created_at',body.session_id,'complete')]
     except Exception:
         if lock: await conn.execute('SELECT pg_advisory_unlock(hashtextextended($1,0))',str(body.session_id))
