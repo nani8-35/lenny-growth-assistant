@@ -14,7 +14,7 @@ app.post('/generate', async(req,res)=>{
       const systemPrompt=`${buildPrompt(mode)}\n\nThe only valid source identifiers for this request are: ${sources.map(source=>`[${source.id}]`).join(', ')}. Never create another identifier. If no supplied source supports a claim, omit the claim or abstain.`;
       const response=await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',{
         method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${process.env.GEMINI_API_KEY}`},
-        signal:AbortSignal.timeout(Number(process.env.MODEL_TIMEOUT||240)*1000),
+        signal:AbortSignal.timeout(15000),
         body:JSON.stringify({model:model.id,messages:[{role:'system',content:systemPrompt},{role:'user',content:JSON.stringify({question:message,conversation:history,transcript_excerpts:sources})}],max_tokens:2048,stream:false}),
       });
       let content;
