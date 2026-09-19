@@ -132,9 +132,15 @@ async def health():
             except Exception: pass
         await asyncio.gather(check_ollama(),check_agent())
     names=result.get('models',[])
-    result['generation_model_ready']=any(n==result.get('ollama_model') or n==str(result.get('ollama_model'))+':latest' for n in names)
-    result['embedding_model_ready']=any(n==settings().embedding_model or n==settings().embedding_model+':latest' for n in names)
-    result['ready']=result['database'] and result['chunks']>0 and result['ollama'] and result['agent'] and result['generation_model_ready'] and result['embedding_model_ready']
+    provider=settings().default_llm_provider
+    if provider=='gemini':
+        result['generation_model_ready']=result['gemini_configured']
+    elif provider=='anthropic':
+        result['generation_model_ready']=result['cloud_configured']
+    else:
+        result['generation_model_ready']=any(n==result.get('ollama_model') or n==str(result.get('ollama_model'))+':latest' for n in names)
+    result['embedding_model_ready']=settings().retrieval_mode=='lexical' or any(n==settings().embedding_model or n==settings().embedding_model+':latest' for n in names)
+    result['ready']=result['database'] and result['chunks']>0 and result['agent'] and result['generation_model_ready'] and result['embedding_model_ready']
     return result
 
 def sse(kind, **data):
