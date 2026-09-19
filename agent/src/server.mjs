@@ -17,10 +17,14 @@ app.post('/generate', async(req,res)=>{
         signal:AbortSignal.timeout(Number(process.env.MODEL_TIMEOUT||240)*1000),
         body:JSON.stringify({model:model.id,messages:[{role:'system',content:systemPrompt},{role:'user',content:JSON.stringify({question:message,conversation:history,transcript_excerpts:sources})}],max_tokens:2048,stream:false}),
       });
-      if (!response.ok) throw new Error(`Gemini request failed with ${response.status}`);
-      const payload=await response.json();
-      const content=payload?.choices?.[0]?.message?.content;
-      if (typeof content!=='string'||!content.trim()) throw new Error('Gemini returned an empty answer');
+      let content;
+      if (response.ok) {
+        const payload=await response.json();
+        content=payload?.choices?.[0]?.message?.content;
+      }
+      if (typeof content!=='string'||!content.trim()) {
+        content=`I could not complete a Gemini synthesis right now. Here are the most relevant archive passages for this question:\n\n${sources.slice(0,3).map(source=>`### ${source.title} [${source.id}]\n${source.content.slice(0,700)}`).join('\n\n')}`;
+      }
       res.setHeader('Content-Type','application/x-ndjson');res.setHeader('Cache-Control','no-cache');
       res.write(JSON.stringify({type:'token',content})+'\n');res.end(JSON.stringify({type:'done'})+'\n');return;
     }
