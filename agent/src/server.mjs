@@ -13,7 +13,7 @@ app.post('/generate', async(req,res)=>{
     const authStorage=AuthStorage.inMemory();
     authStorage.setRuntimeApiKey(provider,provider==='ollama'?'ollama':provider==='gemini'?process.env.GEMINI_API_KEY:process.env.ANTHROPIC_API_KEY);
     const modelRegistry=ModelRegistry.inMemory(authStorage);
-    const settingsManager=SettingsManager.inMemory({compaction:{enabled:false},retry:{enabled:false}});
+    const settingsManager=SettingsManager.inMemory({compaction:{enabled:false},retry:{enabled:false,provider:{timeoutMs:Number(process.env.MODEL_TIMEOUT||240)*1000,maxRetries:0,maxRetryDelayMs:60000}}});
     const resourceLoader=new DefaultResourceLoader({cwd:process.cwd(),agentDir:'/tmp/lenny-agent-isolated',settingsManager,
       noExtensions:true,noSkills:true,noPromptTemplates:true,noThemes:true,noContextFiles:true,
       systemPromptOverride:()=>`${buildPrompt(mode)}\n\nThe only valid source identifiers for this request are: ${sources.map(source=>`[${source.id}]`).join(', ')}. Never create another identifier. If no supplied source supports a claim, omit the claim or abstain.`,appendSystemPromptOverride:()=>[],agentsFilesOverride:()=>({agentsFiles:[]})});

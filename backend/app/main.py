@@ -232,7 +232,7 @@ async def chat(body: Chat, request: Request):
             raise
         except Exception as exc:
             event_log('generation_failed',request_id=request.state.request_id,error=type(exc).__name__)
-            yield sse('error',content='Generation could not finish. Check Ollama/model availability and system status, then retry.',request_id=request.state.request_id)
+            yield sse('error',content='Generation could not finish. Check the selected provider and system status, then retry.',request_id=request.state.request_id)
         finally:
             async def cleanup():
                 try:
