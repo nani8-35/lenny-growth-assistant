@@ -10,6 +10,20 @@ app.post('/generate', async(req,res)=>{
     const {provider, mode, message, sources, history} = req.body;
     if (typeof message !== 'string' || message.length>8000 || !Array.isArray(sources) || sources.length>6 || !Array.isArray(history)) return res.status(400).json({error:'Invalid generation request'});
     const model=providerModel(provider);
+    if (provider==='gemini') {
+      const systemPrompt=`${buildPrompt(mode)}\n\nThe only valid source identifiers for this request are: ${sources.map(source=>`[${source.id}]`).join(', ')}. Never create another identifier. If no supplied source supports a claim, omit the claim or abstain.`;
+      const response=await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',{
+        method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${process.env.GEMINI_API_KEY}`},
+        signal:AbortSignal.timeout(Number(process.env.MODEL_TIMEOUT||240)*1000),
+        body:JSON.stringify({model:model.id,messages:[{role:'system',content:systemPrompt},{role:'user',content:JSON.stringify({question:message,conversation:history,transcript_excerpts:sources})}],max_tokens:2048,stream:false}),
+      });
+      if (!response.ok) throw new Error(`Gemini request failed with ${response.status}`);
+      const payload=await response.json();
+      const content=payload?.choices?.[0]?.message?.content;
+      if (typeof content!=='string'||!content.trim()) throw new Error('Gemini returned an empty answer');
+      res.setHeader('Content-Type','application/x-ndjson');res.setHeader('Cache-Control','no-cache');
+      res.write(JSON.stringify({type:'token',content})+'\n');res.end(JSON.stringify({type:'done'})+'\n');return;
+    }
     const authStorage=AuthStorage.inMemory();
     authStorage.setRuntimeApiKey(provider,provider==='ollama'?'ollama':provider==='gemini'?process.env.GEMINI_API_KEY:process.env.ANTHROPIC_API_KEY);
     const modelRegistry=ModelRegistry.inMemory(authStorage);
