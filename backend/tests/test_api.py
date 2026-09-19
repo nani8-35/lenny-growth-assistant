@@ -16,3 +16,17 @@ def test_sse_is_safe_for_multiline_and_quotes():
     wire=sse('token',content=text)
     assert wire.count('\n\n')==1
     assert json.loads(wire[6:])['content']==text
+
+def test_workspace_token_validation():
+    from fastapi import HTTPException
+    from starlette.requests import Request
+    from app.main import owner_token
+
+    def request(token: str):
+        return Request({'type':'http','headers':[(b'x-workspace-token', token.encode())]})
+
+    valid='workspace-token-1234567890-abcdefghijklmnopqrstuvwxyz'
+    assert owner_token(request(valid)) == valid
+    with pytest.raises(HTTPException) as rejected:
+        owner_token(request('too-short'))
+    assert rejected.value.status_code == 401

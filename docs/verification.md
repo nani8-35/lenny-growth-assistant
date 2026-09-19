@@ -32,3 +32,13 @@ The original 3B smoke response first token was 6.418 seconds and total time was 
 ## Remaining owner actions
 
 Add Anthropic API credits, rerun the cloud smoke test, record the required camera-on demo, and upload the YouTube video. These cannot be honestly completed without the owner's account access and presence.
+
+## Resilience hardening verification — 2026-09-19
+
+- `docker build -f Dockerfile.render -t lenny-growth-assistant:audit-hardening .` completed successfully, including the TypeScript/Vite production build.
+- `docker compose run --rm backend python -m pytest -q tests/test_api.py tests/test_retrieval.py`: **7 passed**.
+- `docker compose run --rm agent pnpm test`: **5 passed**.
+- Local API smoke test created a session with workspace token A, read it with A (`200`), and attempted to read it with workspace token B (`404`).
+- Tracked-source secret scan found no provider key values. Environment files remain ignored.
+
+The frontend production build completed inside the Render-image build. Its standalone test command is intentionally run from the Node build stage or a Node development environment rather than the final Nginx image.

@@ -37,7 +37,7 @@ async def lifespan(app):
         await app.state.pool.close()
 
 app = FastAPI(title='Lenny Growth Assistant', version='1.0.0', lifespan=lifespan)
-app.add_middleware(CORSMiddleware, allow_origins=[settings().cors_origin], allow_methods=['GET','POST'], allow_headers=['Content-Type'])
+app.add_middleware(CORSMiddleware, allow_origins=[settings().cors_origin], allow_methods=['GET','POST'], allow_headers=['Content-Type','X-Workspace-Token'])
 
 @app.middleware('http')
 async def request_id(request, call_next):
@@ -85,30 +85,35 @@ class Chat(BaseModel):
     provider: Literal['ollama','anthropic','gemini'] | None = None
     mode: Literal['answer','essay','markdown','html'] = 'answer'
 
+def owner_token(request: Request):
+    token=request.headers.get('X-Workspace-Token','')
+    if len(token)<24 or len(token)>128: raise HTTPException(401,'A valid workspace token is required.')
+    return token
+
 @app.post('/api/sessions', status_code=201)
-async def create_session(body: NewSession):
-    p=await get_pool()
-    row=await p.fetchrow('INSERT INTO sessions(id,title,user_metadata) VALUES($1,$2,$3) RETURNING *',uuid4(),body.title,json.dumps(body.user_metadata))
+async def create_session(body: NewSession, request: Request):
+    p=await get_pool(); token=owner_token(request)
+    row=await p.fetchrow('INSERT INTO sessions(id,title,user_metadata,owner_token) VALUES($1,$2,$3,$4) RETURNING *',uuid4(),body.title,json.dumps(body.user_metadata),token)
     return serialize(row)
 
 @app.get('/api/sessions')
-async def sessions():
-    p=await get_pool()
-    return [serialize(r) for r in await p.fetch('SELECT * FROM sessions ORDER BY updated_at DESC LIMIT 100')]
+async def sessions(request: Request):
+    p=await get_pool(); token=owner_token(request)
+    return [serialize(r) for r in await p.fetch('SELECT * FROM sessions WHERE owner_token=$1 ORDER BY updated_at DESC LIMIT 100',token)]
 
 @app.get('/api/sessions/{session_id}')
-async def session(session_id: UUID):
-    p=await get_pool()
-    row=await p.fetchrow('SELECT * FROM sessions WHERE id=$1',session_id)
+async def session(session_id: UUID, request: Request):
+    p=await get_pool(); token=owner_token(request)
+    row=await p.fetchrow('SELECT * FROM sessions WHERE id=$1 AND owner_token=$2',session_id,token)
     if not row: raise HTTPException(404,'Conversation not found')
     messages=[serialize(r) for r in await p.fetch('SELECT * FROM messages WHERE session_id=$1 ORDER BY created_at,id',session_id)]
     arts=[serialize(r) for r in await p.fetch('SELECT a.* FROM artifacts a JOIN messages m ON a.message_id=m.id WHERE m.session_id=$1 ORDER BY a.created_at',session_id)]
     return {**serialize(row),'messages':messages,'artifacts':arts}
 
 @app.get('/api/artifacts/{artifact_id}')
-async def artifact(artifact_id: UUID):
-    p=await get_pool()
-    row=await p.fetchrow('SELECT * FROM artifacts WHERE id=$1',artifact_id)
+async def artifact(artifact_id: UUID, request: Request):
+    p=await get_pool(); token=owner_token(request)
+    row=await p.fetchrow('SELECT a.* FROM artifacts a JOIN messages m ON m.id=a.message_id JOIN sessions s ON s.id=m.session_id WHERE a.id=$1 AND s.owner_token=$2',artifact_id,token)
     if not row: raise HTTPException(404,'Artifact not found')
     return serialize(row)
 
@@ -148,6 +153,7 @@ def sse(kind, **data):
 
 @app.post('/api/chat')
 async def chat(body: Chat, request: Request):
+    token=owner_token(request)
     if not body.message.strip(): raise HTTPException(422,'Enter a question')
     provider=body.provider or settings().default_llm_provider
     p=await get_pool()
@@ -156,7 +162,7 @@ async def chat(body: Chat, request: Request):
     try:
         lock=await conn.fetchval('SELECT pg_try_advisory_lock(hashtextextended($1,0))',str(body.session_id))
         if not lock: raise HTTPException(409,'This conversation is already generating a response')
-        if not await conn.fetchval('SELECT 1 FROM sessions WHERE id=$1',body.session_id):
+        if not await conn.fetchval('SELECT 1 FROM sessions WHERE id=$1 AND owner_token=$2',body.session_id,token):
             raise HTTPException(404,'Conversation not found')
         async with httpx.AsyncClient(timeout=5) as client:
             status=await client.get(settings().agent_url+'/health'); status.raise_for_status()

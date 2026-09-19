@@ -3,8 +3,9 @@ export type Message={id:string;role:'user'|'assistant';content:string;sources:So
 export type Artifact={id:string;message_id:string;artifact_type:'markdown'|'html';title:string;content:string};
 export type Session={id:string;title:string;updated_at:string};
 export type Health={ready:boolean;database:boolean;ollama:boolean;agent:boolean;chunks:number;episodes:number;cloud_configured:boolean;gemini_configured?:boolean;embedding_model_ready?:boolean;default_provider?:string;ollama_model?:string;models?:string[]};
+const workspaceToken=(()=>{const key='lenny-workspace-token';let token=localStorage.getItem(key);if(!token){token=crypto.randomUUID()+crypto.randomUUID();localStorage.setItem(key,token)}return token})();
 export async function api<T>(path:string,init?:RequestInit):Promise<T>{
- const res=await fetch('/api'+path,{...init,headers:{'Content-Type':'application/json',...init?.headers}});
+ const res=await fetch('/api'+path,{...init,headers:{'Content-Type':'application/json','X-Workspace-Token':workspaceToken,...init?.headers}});
  const body=await res.json();if(!res.ok)throw new Error(body.error?.message||body.detail||'Request failed');return body;
 }
 export async function consumeSSE(body:ReadableStream<Uint8Array>,onEvent:(value:any)=>void){

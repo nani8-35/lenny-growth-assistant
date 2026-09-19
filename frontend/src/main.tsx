@@ -28,7 +28,7 @@ function App(){
   try{
    if(!sid){const s=await api<Session>('/sessions',{method:'POST',body:JSON.stringify({title:'New conversation',user_metadata:{client:'local-web'}})});sid=s.id;setActive(s.id);localStorage.setItem('lenny-session',s.id)}
    setMessages(m=>[...m,{id:'user-'+Date.now(),role:'user',content:question,sources:[]},{id:temp,role:'assistant',content:'',sources:[],provider,mode}]);
-   const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},signal:abort.current.signal,body:JSON.stringify({session_id:sid,message:question,provider,mode})});
+   const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json','X-Workspace-Token':localStorage.getItem('lenny-workspace-token')||''},signal:abort.current.signal,body:JSON.stringify({session_id:sid,message:question,provider,mode})});
    if(!res.ok){const data=await res.json();throw new Error(data.error?.message||'Request failed')}
    if(!res.body)throw new Error('Streaming is unavailable');
    await consumeSSE(res.body,e=>{

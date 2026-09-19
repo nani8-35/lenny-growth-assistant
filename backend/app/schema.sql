@@ -1,7 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS vector;
 CREATE TABLE IF NOT EXISTS sessions (
  id UUID PRIMARY KEY, title TEXT NOT NULL, user_metadata JSONB NOT NULL DEFAULT '{}',
- created_at TIMESTAMPTZ NOT NULL DEFAULT now(), updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+ owner_token TEXT, created_at TIMESTAMPTZ NOT NULL DEFAULT now(), updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE TABLE IF NOT EXISTS messages (
  id UUID PRIMARY KEY, session_id UUID NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
@@ -26,3 +26,6 @@ CREATE TABLE IF NOT EXISTS chunks (
  embedding vector(768) NOT NULL, UNIQUE(episode_id,ordinal)
 );
 CREATE INDEX IF NOT EXISTS chunks_embedding ON chunks USING hnsw (embedding vector_cosine_ops);
+
+ALTER TABLE sessions ADD COLUMN IF NOT EXISTS owner_token TEXT;
+CREATE INDEX IF NOT EXISTS sessions_owner_updated ON sessions(owner_token, updated_at DESC);
