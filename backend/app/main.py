@@ -3,9 +3,15 @@ import json
 import logging
 import re
 import time
+import base64
+import hashlib
+import hmac
+import secrets
+from datetime import datetime, timedelta, timezone
 from contextlib import asynccontextmanager
 from uuid import UUID, uuid4
 import httpx
+import asyncpg
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
@@ -30,6 +36,7 @@ async def lifespan(app):
     try:
         app.state.pool = await db.pool()
         await db.initialize(app.state.pool)
+        await ensure_admin(app.state.pool)
     except Exception as exc:
         event_log('database_startup_failed', error=type(exc).__name__)
     yield
@@ -37,7 +44,7 @@ async def lifespan(app):
         await app.state.pool.close()
 
 app = FastAPI(title='Lenny Growth Assistant', version='1.0.0', lifespan=lifespan)
-app.add_middleware(CORSMiddleware, allow_origins=[settings().cors_origin], allow_methods=['GET','POST'], allow_headers=['Content-Type','X-Workspace-Token'])
+app.add_middleware(CORSMiddleware, allow_origins=[settings().cors_origin], allow_methods=['GET','POST','DELETE'], allow_headers=['Content-Type','Authorization'])
 
 @app.middleware('http')
 async def request_id(request, call_next):
@@ -63,6 +70,7 @@ async def get_pool():
         try:
             app.state.pool = await db.pool()
             await db.initialize(app.state.pool)
+            await ensure_admin(app.state.pool)
         except Exception:
             raise HTTPException(503, 'PostgreSQL is unavailable. Start the database and retry.')
     return app.state.pool
@@ -85,26 +93,111 @@ class Chat(BaseModel):
     provider: Literal['ollama','anthropic','gemini'] | None = None
     mode: Literal['answer','essay','markdown','html'] = 'answer'
 
-def owner_token(request: Request):
-    token=request.headers.get('X-Workspace-Token','')
-    if len(token)<24 or len(token)>128: raise HTTPException(401,'A valid workspace token is required.')
+def hash_password(password: str, salt: bytes | None = None) -> str:
+    salt = salt or secrets.token_bytes(16)
+    digest = hashlib.scrypt(password.encode(), salt=salt, n=2**14, r=8, p=1)
+    return base64.urlsafe_b64encode(salt).decode()+'.'+base64.urlsafe_b64encode(digest).decode()
+
+def password_matches(password: str, encoded: str) -> bool:
+    try:
+        salt_value, digest_value = encoded.split('.', 1)
+        actual = hash_password(password, base64.urlsafe_b64decode(salt_value.encode())).split('.', 1)[1]
+        return hmac.compare_digest(actual, digest_value)
+    except Exception:
+        return False
+
+def token_digest(token: str) -> str:
+    return hashlib.sha256(token.encode()).hexdigest()
+
+async def ensure_admin(pool):
+    config=settings(); email=config.admin_email.strip().lower()
+    if not email or not config.admin_password: return
+    existing=await pool.fetchrow('SELECT id FROM users WHERE email=$1', email)
+    if existing:
+        await pool.execute('UPDATE users SET is_admin=TRUE WHERE id=$1', existing['id'])
+    else:
+        await pool.execute('INSERT INTO users(id,email,name,password_hash,is_admin) VALUES($1,$2,$3,$4,TRUE)',uuid4(),email,'Master administrator',hash_password(config.admin_password))
+
+def bearer_token(request: Request) -> str:
+    value=request.headers.get('Authorization','')
+    if not value.startswith('Bearer '): raise HTTPException(401,'Sign in is required.')
+    token=value[7:].strip()
+    if len(token)<32: raise HTTPException(401,'Sign in is required.')
     return token
+
+async def current_user(request: Request, pool):
+    token=bearer_token(request)
+    row=await pool.fetchrow('SELECT u.id,u.email,u.name,u.is_admin FROM auth_sessions a JOIN users u ON u.id=a.user_id WHERE a.token_hash=$1 AND a.expires_at>now()',token_digest(token))
+    if not row: raise HTTPException(401,'Your session has expired. Sign in again.')
+    return row
+
+async def issue_session(pool, user_id: UUID) -> str:
+    token=secrets.token_urlsafe(32)
+    await pool.execute('INSERT INTO auth_sessions(token_hash,user_id,expires_at) VALUES($1,$2,$3)',token_digest(token),user_id,datetime.now(timezone.utc)+timedelta(days=settings().session_days))
+    return token
+
+class Register(BaseModel):
+    name: str = Field(min_length=1, max_length=80)
+    email: str = Field(min_length=5, max_length=254)
+    password: str = Field(min_length=12, max_length=200)
+
+class Credentials(BaseModel):
+    email: str = Field(min_length=5, max_length=254)
+    password: str = Field(min_length=1, max_length=200)
+
+async def auth_response(pool, user):
+    token=await issue_session(pool,user['id'])
+    return {'access_token':token,'user':{'id':str(user['id']),'email':user['email'],'name':user['name'],'is_admin':user['is_admin']}}
+
+@app.post('/api/auth/signup', status_code=201)
+async def signup(body: Register):
+    email=body.email.strip().lower()
+    if '@' not in email: raise HTTPException(422,'Enter a valid email address.')
+    p=await get_pool()
+    try:
+        user=await p.fetchrow('INSERT INTO users(id,email,name,password_hash) VALUES($1,$2,$3,$4) RETURNING id,email,name,is_admin',uuid4(),email,body.name.strip(),hash_password(body.password))
+    except asyncpg.UniqueViolationError:
+        raise HTTPException(409,'An account already exists for this email.')
+    return await auth_response(p,user)
+
+@app.post('/api/auth/login')
+async def login(body: Credentials):
+    p=await get_pool(); user=await p.fetchrow('SELECT id,email,name,password_hash,is_admin FROM users WHERE email=$1',body.email.strip().lower())
+    if not user or not password_matches(body.password,user['password_hash']): raise HTTPException(401,'Email or password is incorrect.')
+    return await auth_response(p,user)
+
+@app.post('/api/auth/logout')
+async def logout(request: Request):
+    p=await get_pool(); token=bearer_token(request); await p.execute('DELETE FROM auth_sessions WHERE token_hash=$1',token_digest(token))
+    return {'ok':True}
+
+@app.get('/api/auth/me')
+async def me(request: Request):
+    p=await get_pool(); user=await current_user(request,p)
+    return {'id':str(user['id']),'email':user['email'],'name':user['name'],'is_admin':user['is_admin']}
+
+@app.get('/api/admin/users')
+async def users_admin(request: Request):
+    p=await get_pool(); user=await current_user(request,p)
+    if not user['is_admin']: raise HTTPException(403,'Administrator access is required.')
+    rows=await p.fetch('SELECT u.id,u.name,u.email,u.is_admin,u.created_at,count(s.id)::int AS conversation_count FROM users u LEFT JOIN sessions s ON s.user_id=u.id GROUP BY u.id ORDER BY u.created_at DESC')
+    return [serialize(row) for row in rows]
 
 @app.post('/api/sessions', status_code=201)
 async def create_session(body: NewSession, request: Request):
-    p=await get_pool(); token=owner_token(request)
-    row=await p.fetchrow('INSERT INTO sessions(id,title,user_metadata,owner_token) VALUES($1,$2,$3,$4) RETURNING *',uuid4(),body.title,json.dumps(body.user_metadata),token)
+    p=await get_pool(); user=await current_user(request,p)
+    row=await p.fetchrow('INSERT INTO sessions(id,title,user_metadata,user_id) VALUES($1,$2,$3,$4) RETURNING *',uuid4(),body.title,json.dumps(body.user_metadata),user['id'])
     return serialize(row)
 
 @app.get('/api/sessions')
 async def sessions(request: Request):
-    p=await get_pool(); token=owner_token(request)
-    return [serialize(r) for r in await p.fetch('SELECT * FROM sessions WHERE owner_token=$1 ORDER BY updated_at DESC LIMIT 100',token)]
+    p=await get_pool(); user=await current_user(request,p)
+    return [serialize(r) for r in await p.fetch('SELECT * FROM sessions WHERE user_id=$1 ORDER BY updated_at DESC LIMIT 100',user['id'])]
 
 @app.get('/api/sessions/{session_id}')
 async def session(session_id: UUID, request: Request):
-    p=await get_pool(); token=owner_token(request)
-    row=await p.fetchrow('SELECT * FROM sessions WHERE id=$1 AND owner_token=$2',session_id,token)
+    p=await get_pool(); user=await current_user(request,p)
+    row=await p.fetchrow('SELECT * FROM sessions WHERE id=$1 AND user_id=$2',session_id,user['id'])
     if not row: raise HTTPException(404,'Conversation not found')
     messages=[serialize(r) for r in await p.fetch('SELECT * FROM messages WHERE session_id=$1 ORDER BY created_at,id',session_id)]
     arts=[serialize(r) for r in await p.fetch('SELECT a.* FROM artifacts a JOIN messages m ON a.message_id=m.id WHERE m.session_id=$1 ORDER BY a.created_at',session_id)]
@@ -112,10 +205,17 @@ async def session(session_id: UUID, request: Request):
 
 @app.get('/api/artifacts/{artifact_id}')
 async def artifact(artifact_id: UUID, request: Request):
-    p=await get_pool(); token=owner_token(request)
-    row=await p.fetchrow('SELECT a.* FROM artifacts a JOIN messages m ON m.id=a.message_id JOIN sessions s ON s.id=m.session_id WHERE a.id=$1 AND s.owner_token=$2',artifact_id,token)
+    p=await get_pool(); user=await current_user(request,p)
+    row=await p.fetchrow('SELECT a.* FROM artifacts a JOIN messages m ON m.id=a.message_id JOIN sessions s ON s.id=m.session_id WHERE a.id=$1 AND s.user_id=$2',artifact_id,user['id'])
     if not row: raise HTTPException(404,'Artifact not found')
     return serialize(row)
+
+@app.delete('/api/sessions/{session_id}', status_code=204)
+async def delete_session(session_id: UUID, request: Request):
+    p=await get_pool(); user=await current_user(request,p)
+    deleted=await p.execute('DELETE FROM sessions WHERE id=$1 AND user_id=$2',session_id,user['id'])
+    if deleted.endswith('0'): raise HTTPException(404,'Conversation not found')
+    return None
 
 @app.get('/api/health')
 async def health():
@@ -153,16 +253,15 @@ def sse(kind, **data):
 
 @app.post('/api/chat')
 async def chat(body: Chat, request: Request):
-    token=owner_token(request)
     if not body.message.strip(): raise HTTPException(422,'Enter a question')
     provider=body.provider or settings().default_llm_provider
-    p=await get_pool()
+    p=await get_pool(); user=await current_user(request,p)
     conn=await p.acquire()
     lock=False
     try:
         lock=await conn.fetchval('SELECT pg_try_advisory_lock(hashtextextended($1,0))',str(body.session_id))
         if not lock: raise HTTPException(409,'This conversation is already generating a response')
-        if not await conn.fetchval('SELECT 1 FROM sessions WHERE id=$1 AND owner_token=$2',body.session_id,token):
+        if not await conn.fetchval('SELECT 1 FROM sessions WHERE id=$1 AND user_id=$2',body.session_id,user['id']):
             raise HTTPException(404,'Conversation not found')
         async with httpx.AsyncClient(timeout=5) as client:
             status=await client.get(settings().agent_url+'/health'); status.raise_for_status()

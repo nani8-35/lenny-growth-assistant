@@ -79,3 +79,15 @@ The Render free service has no durability, uptime, backup, rate-limit, or identi
 The local 8B model did not meet the aspirational under-four-second first-token target in the recorded verification run; the demo should state the measured result honestly. The supplied [camera-on script](docs/demo-script.md) explicitly shows the local Ollama path and the cloud fallback behavior.
 
 Repository: [nani8-35/lenny-growth-assistant](https://github.com/nani8-35/lenny-growth-assistant). The video and final submission links remain user-uploaded deliverables; do not mark them complete until their URLs are verified.
+
+## Accounts and conversation management
+
+The application now requires an account. The first administrator is configured through local environment variables before the first `docker compose up`:
+
+```sh
+# Add these to .env — use a unique, long password.
+ADMIN_EMAIL=you@example.com
+ADMIN_PASSWORD=replace-with-a-long-unique-password
+```
+
+Use **Create account** for customers. Each user sees only their own conversations and artifacts. Hover a conversation in the left sidebar and select the trash icon to permanently delete it. The configured administrator receives a **Users** control in the top bar, which lists registered accounts and their conversation counts. Passwords use scrypt hashes; API sessions are random bearer tokens stored only as hashes in PostgreSQL.

@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     top_k: int = 6
     model_timeout: int = 240
     cors_origin: str = 'http://localhost:3000'
+    admin_email: str = ''
+    admin_password: str = ''
+    session_days: int = 30
 
 @lru_cache
 def settings():
