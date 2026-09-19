@@ -1,0 +1,1 @@
+{"name":"lenny-agent","private":true,"type":"module","scripts":{"start":"node src/server.mjs","test":"node --test"},"dependencies":{"@mariozechner/pi-coding-agent":"0.73.1","express":"4.21.2"}}

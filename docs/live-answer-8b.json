@@ -1,0 +1,106 @@
+{
+  "question": "What does Rahul Vohra say about measuring product-market fit?",
+  "mode": "answer",
+  "session_id": "9d30f023-284c-4b56-ac69-7d731ca5c143",
+  "first_token_seconds": 15.905,
+  "total_seconds": 48.079,
+  "terminal": {
+    "type": "done",
+    "message_id": "12336e81-5a83-4779-bd4a-d54b152b59d0",
+    "elapsed_ms": 48005
+  },
+  "warnings": [],
+  "history": {
+    "id": "9d30f023-284c-4b56-ac69-7d731ca5c143",
+    "title": "Verification: answer",
+    "user_metadata": {},
+    "created_at": "2026-09-19T03:03:50.266167+00:00",
+    "updated_at": "2026-09-19T03:04:38.266803+00:00",
+    "messages": [
+      {
+        "id": "49b0dc16-f562-4472-997b-a7ac8d693cad",
+        "session_id": "9d30f023-284c-4b56-ac69-7d731ca5c143",
+        "role": "user",
+        "content": "What does Rahul Vohra say about measuring product-market fit?",
+        "sources": [],
+        "provider": "ollama",
+        "mode": "answer",
+        "status": "complete",
+        "created_at": "2026-09-19T03:03:50.295070+00:00"
+      },
+      {
+        "id": "12336e81-5a83-4779-bd4a-d54b152b59d0",
+        "session_id": "9d30f023-284c-4b56-ac69-7d731ca5c143",
+        "role": "assistant",
+        "content": "Based on the source excerpts, here are the key points about measuring product-market fit:\n\n* Rahul Vohra emphasizes that product-market fit can be measured, optimized, and systematically increased. He claims that it's possible to even have an algorithm write a roadmap guaranteed to increase product-market fit [S4].\n* Rahul Vohra introduces the concept of a metric, inspired by Sean Ellis' research, which measures the percentage of users who would be \"very disappointed\" if they could no longer use the product. If this percentage is less than 40%, the company may struggle to grow [S4].\n* Unlike traditional definitions of product-market fit, Karri Saarinen suggests that it's a spectrum, rather than a binary state. You might have product-market fit with segments of the market, and it can grow over time [S5].\n* Christopher Lochhead argues that product-market fit is not about fitting a product into a market, but rather designing a category for your product. He suggests that the traditional understanding of product-market fit is \"backwards\" [S6].",
+        "sources": [
+          {
+            "id": "S1",
+            "guest": "Rahul Vohra",
+            "score": 0.7755593779372186,
+            "title": "Superhuman's secret to success | Rahul Vohra (CEO and founder)",
+            "content": "nboarding every new user, everyone's activated. Amazing.\" So some of the variables you're sharing is, do you have like cheap cash to invest in say, it doesn't have to be 20 people, it could be a few people to start. Then if there's an LTV, ACV element of just are you going to make enough from a new customer? Imagine that's a variable. Is there anything else you think founders should think about?\n\nRahul Vohra (00:52:14):\nAbsolutely. You don't want to lose money doing this. We always made money doing onboarding to be clear, it's just that at a certain point the mass market, whether it for us it's enterprise or all of the prosumers in the world, you hit a top of funnel width, it needs to be wide enough where manually onboarding no longer makes sense.\n\nLenny Rachitsky (00:52:37):\nAwesome. Okay, let's talk about product market fit. I know that everyone, when they think of Rahul, they think product market fit. You wrote this epic First Round post that described the way you guys approach product market fit. We're not going to spend a lot of time on describing it, because people can look it up. So let me just ask you this, what are a couple of things that you think people still don't understand about finding product market fit, getting to product market fit? Considering it's the most important thing you got to figure out as a founder. If you don't find something people want, nothing else matters. Anything there you want to share.\n\nRahul Vohra (00:53:12):\nThe core ideas are still weird enough that I'll start there. Which is number one, you can measure product market fit. Number two, you can optimize product market fit. Number three, you can systematically, even numerically increase product market fit. And number four, you can even have an algorithm write your roadmap for you, and that is a roadmap that is guaranteed to increase product market fit. Now, if that sounds crazy, I would be the first to admit it doesn't seem like that should be true, but go check out that post. I think it is still the most widely shared post on First Round Review, it's called How Superhuman Built an Engine to Find Product Market Fit, or just Google the Superhuman Product Market Fit Engine. And you'll see the algorithm laid out there fully explained and why it works.",
+            "chunk_id": 422,
+            "source_url": "https://www.youtube.com/watch?v=0igjSRZyX-w",
+            "timestamp_ref": "00:52:14"
+          },
+          {
+            "id": "S2",
+            "guest": "Todd Jackson",
+            "score": 0.7625690192478708,
+            "title": "A framework for finding product-market fit | Todd Jackson (First Round Capital)",
+            "content": "very general when it comes to product-market fit. You'll know it when you see it, you'll know it when you have it. It's not specific. And there's so many other startup topics where there is good content on the internet like hiring your first salesperson, running board meetings, stuff that is specific and tactical. But there isn't that much content around product-market fit that is that specific.\n\n(00:07:33):\nAnd so I think that's actually why Rahul from Superhuman is well-known for his approach to finding product-market fit. That was published on the First Round Review in 2018, and it was immediately popular and interesting to people. And I think the reason is because it was specific and because it was tactical and it brought a little bit of the science to something that people thought was just an art. And I think it's why your content is really popular too, Lenny.\n\n(00:07:57):\nYou and I worked on this product validation article together a little while back, and the seven part series that you did on B2B SaaS companies and the PMF benchmarking data that you had, I think it was how long it took to get to a product and a customer and to product-market fit, that was super well-read. And there just isn't that much good specific content about this. But like you said, product-market fit is the single most important thing that your startup does in the first three years and it's just underexplored, it's underexplained as a topic.\n\n(00:08:28):\nSo we felt this was a very important thing to do, something worth focusing on. And I've personally talked to hundreds of founders about this topic. We've published dozens of articles on the First Round Review. We call this our Paths to Product-Market Fit Series where we interview founders about the early days. And I'm just always interested in what are the patterns. If you talk to enough successful founders, and in this case, it can be enterprise founders, and you ask them, \"What did you do in the first six to nine months of running your company, of starting your company? What patterns emerged from that?\" And we have found a very consistent set of patterns, and that's what we decided to base our framework around.",
+            "chunk_id": 14336,
+            "source_url": "https://www.youtube.com/watch?v=yc1Uwhfxacs",
+            "timestamp_ref": "00:07:33"
+          },
+          {
+            "id": "S3",
+            "guest": "Benjamin Lauzier",
+            "score": 0.7621729431978951,
+            "title": "How marketplaces win: Liquidity, growth levers, quality, more | Benjamin Lauzier (Lyft, Thumbtack)",
+            "content": "ough plumbers on Thumbtack? And that's usually where you can actually impact fill rate. Sweet. \n\nBenjamin Lauzier (00:21:25):\nYeah, exactly.\n\nLenny Rachitsky (00:21:26):\nAnd that becomes the goal of the team, that becomes the focus of the company, basically drive that up in all the little markets you're in and all the categories you're in.\n\nBenjamin Lauzier (00:21:34):\nExactly. Yeah, completely.\n\nLenny Rachitsky (00:21:36):\nAwesome. You mentioned this idea of product market fit and the things change, pre-product market fit, post-product market fit. Classic question, I'm curious if you have any insights here, just what tells you that you've climbed that hill of product market fit, that you might have product market fit, or you definitely have product market fit in a marketplace?\n\nBenjamin Lauzier (00:21:55):\nIt's hard because to me, the two are most independent. Maybe this is a hot take, but I feel like product market fit is independent of your marketplace dynamics. You might have a great product, and it provides amazing value to both sides, but you have yet to crack the flywheel on the supply side for how to bring those people. You don't have the right product channel fit, for example. And so, this will have a massive impact on the dynamics of your marketplace. And so, to me, my answer would tend to be pretty classical, it would be like measure your product market fit the way you would for a normal company. So yeah, it's a bit of an art more than the science, but I like the classic if we were to take this product away, what percentage of users would be significantly disappointed or have no other solution?\n\n(00:22:50):\nSo, questions like this I think go to the heart of how valuable is your solution to users, and you can do this on the supply side and the demand side. I think here my advice is typically to consider that you have two product market fits essentially. You want to make sure that you have a compelling enough value proposition on both sides of the marketplace, and very often at the beginning you find product market fit on the demand side, but you realize it's not compelling enough for your suppliers because your margins are too high or something like that. So, realizing that you have both those things, but I think you can measure them in a way that's relatively traditional, and that's independent of marketplace dynamics.",
+            "chunk_id": 1929,
+            "source_url": "https://www.youtube.com/watch?v=CYwgStMln6U",
+            "timestamp_ref": "00:21:25"
+          },
+          {
+            "id": "S4",
+            "guest": "Rahul Vohra",
+            "score": 0.7618446576769992,
+            "title": "Superhuman's secret to success | Rahul Vohra (CEO and founder)",
+            "content": "if that sounds crazy, I would be the first to admit it doesn't seem like that should be true, but go check out that post. I think it is still the most widely shared post on First Round Review, it's called How Superhuman Built an Engine to Find Product Market Fit, or just Google the Superhuman Product Market Fit Engine. And you'll see the algorithm laid out there fully explained and why it works.\n\n(00:54:07):\nI'd say the second thing is to get to product market fit, you have to deliberately not act on the feedback of many of your early users. This is at the same time as listening to people intensely and building what people want. That's what we're here to do, is to make something that people want. But it can't be all people. It can't be everybody. The question becomes, how do you listen to them? And then even of what they say, what do you pay attention to and what don't you? All of that's covered in the Product Market Fit Engine.\n\nLenny Rachitsky (00:54:45):\nOkay, I got to follow this thought on algorithmically building your roadmap to increase product market fit. Talk about how one would do that.\n\nRahul Vohra (00:54:55):\nWell, that's really the meat of the engine. Let's see if I can condense it here in a very easy to grok fashion. Let's assume for the sake of argument, that you can put a number on product market fit, and it turns out you can. Very simply, you're going to ask people, \"How would you feel if you can no longer use this product?\" You give them three responses. One of them is very disappointed, the other is somewhat disappointed, and the other is not disappointed. Very disappointed means, \"I'd be devastated. I love this product. I need this product.\"\n\n(00:55:30):\nWhat Sean Ellis found, Sean Ellis, if you don't know him, is the guy who coined the term growth hacker, and he instrumented, benchmarked this initial question. What he found, is that the companies that struggled to grow almost always had less than 40%, very disappointed. Whereas the companies that grew the fastest almost always had more than 40%, very disappointed. And this question, this metric is way more predictive of success than something, for example, like net promoter score.",
+            "chunk_id": 423,
+            "source_url": "https://www.youtube.com/watch?v=0igjSRZyX-w",
+            "timestamp_ref": "00:54:07"
+          },
+          {
+            "id": "S5",
+            "guest": "Karri Saarinen",
+            "score": 0.7284243438137603,
+            "title": "Inside Linear: Building with taste, craft, and focus | Karri Saarinen (co-founder, designer, CEO)",
+            "content": "to really feel product market fit?\" What you're describing is what I often hear, it's more of this spectrum of more and more confidence that there's product market fit and, even more specifically, it's product market fit with segments of the market. It's this map of the world and you're just slowly acquiring territory in the market with specific elements and then, over time, it grows and grows.\n\nKarri Saarinen (01:19:23):\nYeah, I think a spectrum is a good way to think about it, too. I feel like there's this blog post written in the past where you know when you have product market fit and I think it probably... It's like that for some, I don't know, social consumer apps. If it's taking off or not, then you don't really have a lot of different segments, or you don't really think about it, you have millions of users and then you see it's taking off, so you have a product market fit. I think in more like a B2B world. I think there's always... You can have different sizes of customers, you can have different domains the customers are in, or there's different categories where you might be doing really well in one category and then not that well another.\n\n(01:20:14):\nI think maybe the countering to do things is that, actually, if you're doing really well in some category, just double down on that. This is something I talked to the Zoom founder, Eric, at some point in the company's lifecycle, and this is also what he said. When they were building Zoom in the early days, they would get this one type of customer. I don't know, maybe it's a university and then it worked really well for them. Then they're like, \"How do we get more of the universities?\" They would always focus on a certain customer rather than, \"Let's just try to get everyone, so let's focus on everything,\" which is not possible. Again, it's about the focus. If you see that something is working really well, then it's almost like you should focus on doing that more until you hit some point. It's like, \"Okay, now we do have that category captured or handled as much as we want,\" and we should expand to new area.\n\nLenny (01:21:12):\nEssentially, look for pull and just follow that and pay attention to that.",
+            "chunk_id": 8676,
+            "source_url": "https://www.youtube.com/watch?v=4muxFVZ4XfM",
+            "timestamp_ref": "01:19:23"
+          },
+          {
+            "id": "S6",
+            "guest": "Christopher Lochhead",
+            "score": 0.7254641096772305,
+            "title": "How to become a category pirate | Christopher Lochhead (Author of Play Bigger, Niche Down, more)",
+            "content": "ss Mark Andreessen, he's the guy that framed it. And Kevin just wrote a really super thoughtful piece on why it's backwards, and I'm happy to send that to you if you want. Kevin Maney, genius. Here's the aha, again, category design principles. Listen to the words, product, market, fit. Product market fit. Now, let's think, what there is for me to do is find a way to fit my product into a market.\n\n(01:11:48):\nPretty simple way to determine or to distill product market fit. And what product market fit has come to mean is, we're a brew pub, you and I want to start a craft beer place like everybody else on the West Coast, and we're going to make a bunch of samples and shit, and we're going to feed those samples to our friends and to our ideal customer profile that I learned from Lenny. And if enough people amongst my friend group and my ideal customer group say, \"That's a yummy IPA, I like it,\" then we're going to build it. And then if people start buying that IPA, we have, and these are the words people use, \"achieved product market fit.\"\n\n(01:12:43):\nOkay, well, Threads achieved product market fit faster than any product in the history of the world. Here's the aha, categories make products not the other way around. What you want is you want to design a market category for your product, not fit your product into a market category. And the problem is, our industry, like many others, but the tech industry, is full of product bigots, because they really, really, really, really, really believe, like they believe in the availability of oxygen, the best product wins. They really believe it. And they believe what marketing's job is, \"Could you put a demo on our website and get a demo? Can we get a viral video that's a demo? Because once people see how much better, faster, cheaper, smaller, bigger, whatever our thing is, they're going to buy it,\" and they don't. What they buy is a new insight around a problem/opportunity that requires a different solution. That's what they buy. Here's another simple example. This is the one I hear right now a lot, \"What we need now the story, we need a story brand. The number one thing you can do in marketing as a startup founder is to share your startup founder journey. Share your journey.\" This is all the shit we're hearing. We've been hearing this for a while. Well, guess what? No one gives a fuck about your journey.",
+            "chunk_id": 3294,
+            "source_url": "https://www.youtube.com/watch?v=mS4B541m9xg",
+            "timestamp_ref": "01:11:48"
+          }
+        ],
+        "provider": "ollama",
+        "mode": "answer",
+        "status": "complete",
+        "created_at": "2026-09-19T03:04:38.266803+00:00"
+      }
+    ],
+    "artifacts": []
+  }
+}

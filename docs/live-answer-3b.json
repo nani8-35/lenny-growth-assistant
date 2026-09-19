@@ -1,0 +1,111 @@
+{
+  "question": "How does Rahul Vohra measure product-market fit?",
+  "mode": "answer",
+  "session_id": "67853042-62c7-4f3b-b95e-67900b5f0d0a",
+  "first_token_seconds": 6.418,
+  "total_seconds": 12.878,
+  "terminal": {
+    "type": "done",
+    "message_id": "8516af6c-a8fd-4fef-b28f-33cf965a4be5",
+    "elapsed_ms": 12828
+  },
+  "warnings": [
+    {
+      "type": "warning",
+      "content": "The model did not include inline citations. Verify this draft against the source cards."
+    }
+  ],
+  "history": {
+    "id": "67853042-62c7-4f3b-b95e-67900b5f0d0a",
+    "title": "Verification: answer",
+    "user_metadata": {},
+    "created_at": "2026-09-18T16:07:02.795899+00:00",
+    "updated_at": "2026-09-18T16:07:15.665430+00:00",
+    "messages": [
+      {
+        "id": "819f8d34-90b6-428c-9425-d4c311428044",
+        "session_id": "67853042-62c7-4f3b-b95e-67900b5f0d0a",
+        "role": "user",
+        "content": "How does Rahul Vohra measure product-market fit?",
+        "sources": [],
+        "provider": "ollama",
+        "mode": "answer",
+        "status": "complete",
+        "created_at": "2026-09-18T16:07:02.841284+00:00"
+      },
+      {
+        "id": "8516af6c-a8fd-4fef-b28f-33cf965a4be5",
+        "session_id": "67853042-62c7-4f3b-b95e-67900b5f0d0a",
+        "role": "assistant",
+        "content": "### Key Takeaways for Measuring Product-Market Fit\n\nBased on the transcript excerpt **S1** from Rahul Vohra, here are a couple of key points about how to measure product-market fit:\n\n1.  **You can measure Product-Market Fit**: Rahul emphasizes this point, indicating that it's possible to quantify Product-Market Fit.\n\n2.  **You can Optimize Product-Market Fit**: The ability to fine-tune and optimize Product-Market Fit is another aspect of measuring it.\n\n### Common Misinterpretations of Product-Market Fit\n\nSome common misconceptions about product-market fit include the idea that it can be achieved overnight or with minimal effort.\n\n### Algorithmic Roadmap for Product-Market Fit Engine\n\nThe engine, as mentioned in **S2**, can help in determining a roadmap for product-market fit by having an algorithm that analyzes user feedback and preferences.\n\n### Deliberately Not Acting on Early User Feedback\n\nIn order to avoid losing money and to increase product-market fit, founders can deliberately not act on the feedback of many early users. This approach involves building what people want while also understanding that not everyone needs to be satisfied.\n\n### Example Questions to Determine Product-Market Fit\n\nRahul suggests using the following questions to figure out product-market fit:\n\n*   Are you going to make enough from a new customer?\n*   How would you feel if you can no longer use this product?",
+        "sources": [
+          {
+            "id": "S1",
+            "guest": "Rahul Vohra",
+            "score": 0.751258805319154,
+            "title": "Superhuman's secret to success | Rahul Vohra (CEO and founder)",
+            "content": "nboarding every new user, everyone's activated. Amazing.\" So some of the variables you're sharing is, do you have like cheap cash to invest in say, it doesn't have to be 20 people, it could be a few people to start. Then if there's an LTV, ACV element of just are you going to make enough from a new customer? Imagine that's a variable. Is there anything else you think founders should think about?\n\nRahul Vohra (00:52:14):\nAbsolutely. You don't want to lose money doing this. We always made money doing onboarding to be clear, it's just that at a certain point the mass market, whether it for us it's enterprise or all of the prosumers in the world, you hit a top of funnel width, it needs to be wide enough where manually onboarding no longer makes sense.\n\nLenny Rachitsky (00:52:37):\nAwesome. Okay, let's talk about product market fit. I know that everyone, when they think of Rahul, they think product market fit. You wrote this epic First Round post that described the way you guys approach product market fit. We're not going to spend a lot of time on describing it, because people can look it up. So let me just ask you this, what are a couple of things that you think people still don't understand about finding product market fit, getting to product market fit? Considering it's the most important thing you got to figure out as a founder. If you don't find something people want, nothing else matters. Anything there you want to share.\n\nRahul Vohra (00:53:12):\nThe core ideas are still weird enough that I'll start there. Which is number one, you can measure product market fit. Number two, you can optimize product market fit. Number three, you can systematically, even numerically increase product market fit. And number four, you can even have an algorithm write your roadmap for you, and that is a roadmap that is guaranteed to increase product market fit. Now, if that sounds crazy, I would be the first to admit it doesn't seem like that should be true, but go check out that post. I think it is still the most widely shared post on First Round Review, it's called How Superhuman Built an Engine to Find Product Market Fit, or just Google the Superhuman Product Market Fit Engine. And you'll see the algorithm laid out there fully explained and why it works.",
+            "chunk_id": 422,
+            "source_url": "https://www.youtube.com/watch?v=0igjSRZyX-w",
+            "timestamp_ref": "00:52:14"
+          },
+          {
+            "id": "S2",
+            "guest": "Rahul Vohra",
+            "score": 0.7465802725053159,
+            "title": "Superhuman's secret to success | Rahul Vohra (CEO and founder)",
+            "content": "if that sounds crazy, I would be the first to admit it doesn't seem like that should be true, but go check out that post. I think it is still the most widely shared post on First Round Review, it's called How Superhuman Built an Engine to Find Product Market Fit, or just Google the Superhuman Product Market Fit Engine. And you'll see the algorithm laid out there fully explained and why it works.\n\n(00:54:07):\nI'd say the second thing is to get to product market fit, you have to deliberately not act on the feedback of many of your early users. This is at the same time as listening to people intensely and building what people want. That's what we're here to do, is to make something that people want. But it can't be all people. It can't be everybody. The question becomes, how do you listen to them? And then even of what they say, what do you pay attention to and what don't you? All of that's covered in the Product Market Fit Engine.\n\nLenny Rachitsky (00:54:45):\nOkay, I got to follow this thought on algorithmically building your roadmap to increase product market fit. Talk about how one would do that.\n\nRahul Vohra (00:54:55):\nWell, that's really the meat of the engine. Let's see if I can condense it here in a very easy to grok fashion. Let's assume for the sake of argument, that you can put a number on product market fit, and it turns out you can. Very simply, you're going to ask people, \"How would you feel if you can no longer use this product?\" You give them three responses. One of them is very disappointed, the other is somewhat disappointed, and the other is not disappointed. Very disappointed means, \"I'd be devastated. I love this product. I need this product.\"\n\n(00:55:30):\nWhat Sean Ellis found, Sean Ellis, if you don't know him, is the guy who coined the term growth hacker, and he instrumented, benchmarked this initial question. What he found, is that the companies that struggled to grow almost always had less than 40%, very disappointed. Whereas the companies that grew the fastest almost always had more than 40%, very disappointed. And this question, this metric is way more predictive of success than something, for example, like net promoter score.",
+            "chunk_id": 423,
+            "source_url": "https://www.youtube.com/watch?v=0igjSRZyX-w",
+            "timestamp_ref": "00:54:07"
+          },
+          {
+            "id": "S3",
+            "guest": "Elena Verna 4.0",
+            "score": 0.6818443943169364,
+            "title": "The new AI growth playbook for 2026 | How Lovable hit $200M ARR in one year",
+            "content": "at I don't think people grasp yet, which is that product-market fit is no longer this, we've done it. Product-market fit and we're up into the right. Now we just grow, go, grow. Now we hire salespeople, it's going to be great. You've written that just product-market fit is no longer this like you've done it and you're good. It's this endless fight to keep it. Talk about what you're seeing there.\n\nElena Verna (01:00:49):\nI'll first start with what I've felt at least before when people were talking about product-market fit, that yeah, obviously always product-market fit is an evolving thing, but the rate of that evolution was measured in years. What is it that you need the next product-market fit step function change, which often was called second horizon or third horizon. Sometimes five, 10 years, sometimes even longer that you'd need, depending on how good and hard your initial product-market fit was, but you'd spend years scaling the original product-market fit. It was like blitz growth stage. Marketing, sales, growth was very important that you just try to get it to as many people as possible. And then once you have saturation or the cost to getting to the marginal people becomes too high, you start thinking, \"Okay, what else can I offer to help me reach additional people or sell more to existing users that I already have?\"\n\n(01:01:39):\nAnd again, the main point here is it would take years to get to that stage where it became a question that you had to face really hard face-to-face. Now, it's three months, and all of a sudden you have to face that question again. And it's happening because of two things, in my opinion. Number one, in AI technology of what LLM is capable of doing changes still very rapidly with new model release, with each new model release. I think we'll stabilize at some point and then it's going to become more marginal, but we're not there yet. So every three months or so, every single AI LLM provider creates a step function change in what is possible with that LLM. And when you have this new possibility in just an underlying technology that opens up in front of you, then it creates another ceiling of what is possible to build on top of it.",
+            "chunk_id": 372,
+            "source_url": "https://www.youtube.com/watch?v=6qAB6aUMIeA",
+            "timestamp_ref": "01:00:49"
+          },
+          {
+            "id": "S4",
+            "guest": "Elena Verna 4.0",
+            "score": 0.6727179700655913,
+            "title": "The new AI growth playbook for 2026 | How Lovable hit $200M ARR in one year",
+            "content": "also how they hire, and also how product market fit as a concept is no longer what it used to be, and how every company basically has to recapture product market fit every three months. This episode is incredibly tactical, and you will leave this conversation smarter on so many levels. If you enjoy this podcast, don't forget to subscribe and follow it in your favorite podcasting app or YouTube.\n\n(00:02:47):\nAnd if you become an annual subscriber of my newsletter, you get a year free of 19 incredible premium products, including a year free of Lovable, Replit, Bolt, n8n, Linear, Devin, PostHog, Superhuman, Descript, Wispr Flow, Perplexity, Warp, Granola, Magic Patterns, raycast, ChatPRD, Mobbin, and Stripe Atlas. Head on over to Lennysnewsletter.com and click Product Pass. With that, I bring you Elena Vernon, after a short word from our sponsors. Here's a puzzle for you, what do OpenAI, Cursor, Perplexity, Vercel, Plaid, and hundreds of other winning companies have in common? The answer is they're all powered by today's sponsor, WorkOS.\n\n(00:03:25):\nIf you're building software for enterprises, you've probably felt the pain of integrating single sign- on, Skim, RBAC, audit logs, and other features required by big customers. WorkOS turns those deal blockers into drop-in APIs, with a modern developer platform built specifically for B2B SaaS. Whether you're a seed stage startup trying to land your first enterprise customer, or a unicorn expanding globally, WorkOS is the fastest path to becoming enterprise-ready and unlocking growth. They're essentially Stripe for enterprise features. Visit Workos.com to get started, or just hit up their Slack support where they have real engineers in there who answer your questions super fast. WorkOS allows you to build like the best, with delightful APIs, comprehensive docs, and a smooth developer experience. Go to workos.com to make your app enterprise-ready today.",
+            "chunk_id": 335,
+            "source_url": "https://www.youtube.com/watch?v=6qAB6aUMIeA",
+            "timestamp_ref": "00:02:47"
+          },
+          {
+            "id": "S5",
+            "guest": "Elena Verna 2.0",
+            "score": 0.6431833463639056,
+            "title": "The ultimate guide to product-led sales | Elena Verna",
+            "content": "es. Product has to have a seat at the table and product and sales relationship has to be one of the closest ones in this motion. That's really hard to change, especially in the traditional top-down sales company where marketing and sales have closer relationship. Try to create new rituals. Try to create the new ways of communication between the teams for them to be aligned behind the same goals.\n\n(01:08:16):\nNumber three, don't leave marketing out of the equation. Majority of your usage will not have a buyer in it. You will need marketing, your enterprise marketing, your account-based marketing to go and find and hunt that buyer and to bring them and connect them with usage. Lean on your marketing team. Just because you're doing product-led growth and product-led sales does not mean you don't need marketing, and strong product marketer can do wonders here in helping you with messaging, with outreach, and sales enablement materials.\n\n(01:08:48):\nNumber three, don't wait on data efficacy too long. You might be using your intuition at the beginning very well, but start thinking about how you will need to scale your data issues because product-led sales is all about leveraging usage for pipeline creation. You need to be able to measure that usage, understand that usage, track it, and evolve it.\n\nLenny (01:09:15):\nAmazing. Two more things. One is you shared before we started chatting that you have some benchmarks around some of these metrics that you've mentioned of just what is good so that people can understand what their goals might be. What can you share there?\n\nElena Verna (01:09:29):\nYes, so in terms of benchmarks, first of all, it's time to get from individual usage, when that user comes in to have a single job to be done, to creating an enterprise-level contract. It does not happen in hours. It does not happen in days. It doesn't even happen in months of usage. A couple of benchmarks for y'all across Netlify, Miro, or Amplitude, which are all of the companies I worked at. It was 12 months plus of usage that had to happen before sales contracts can be created on sustainable way.",
+            "chunk_id": 271,
+            "source_url": "https://www.youtube.com/watch?v=bxghtN-OlJQ",
+            "timestamp_ref": "01:08:16"
+          },
+          {
+            "id": "S6",
+            "guest": "Elena Verna 2.0",
+            "score": 0.6324918524887228,
+            "title": "The ultimate guide to product-led sales | Elena Verna",
+            "content": "o have a lot of rituals with sales team to gather that feedback.\n\nLenny (00:40:03):\nOne thing I'll mention is Amplitude and Mixpanel both have a regression tool that help you identify correlations and causal kind of connections between metrics, so maybe shout-out there. I think it's called Compass-\n\nElena Verna (00:40:15):\nYep.\n\nLenny (00:40:16):\n... and then Mixpanel's I think is called Signal.\n\nElena Verna (00:40:19):\nYep. Honestly, to be fair, most of the time I've done it manually at first because it requires so much understanding of the data, and if the data is correct and if I'm even seeing because you don't want to throw in too many co-related variables into the model because then you have issues of those variables like describing themselves, so to speak. Even if they're firing, there might not be actual predictive. It's partnership with analytics team and it's partnership with the intuition from the sales team. Then, you can start throwing it into a regression model and start to automate and think about scaling it, which there is a lot of PLS platforms that are coming up and finding their product-market fit at the moment that can do that for you.\n\n(00:41:04):\nI don't know if I would start there right from the beginning unless you actually understand the data because buying a platform will not bridge the gap for you understanding what actually matters in your data. Buying a platform or using a third-party solution will help you scale your efforts once you hit the first first, let's say, data sales fit that you can then scale and disincrease distribution of. \n\nLenny (00:41:30):\nData sales fit. Wow, that's a new term. There we go. I have not heard that before. Data sales fit. I love it, so you're saying basically start manually to make sure you fully understand what's going on?\n\nElena Verna (00:41:41):\nThat's my take. Yeah. I-\n\nLenny (00:41:42):\n[inaudible 00:41:42].\n\nElena Verna (00:41:42):\n... just... I don't... I have a hard time scaling something that I don't fully understand because data can tell you lies and you can just fit any story that you want into data. I need to really understand it and how it fits and what you are observing and that it makes sense before you go and start using automation on it.",
+            "chunk_id": 254,
+            "source_url": "https://www.youtube.com/watch?v=bxghtN-OlJQ",
+            "timestamp_ref": "00:40:03"
+          }
+        ],
+        "provider": "ollama",
+        "mode": "answer",
+        "status": "complete",
+        "created_at": "2026-09-18T16:07:15.665430+00:00"
+      }
+    ],
+    "artifacts": []
+  }
+}

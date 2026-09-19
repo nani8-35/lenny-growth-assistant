@@ -1,0 +1,4 @@
+FROM llama3.1:8b
+PARAMETER num_ctx 16384
+PARAMETER temperature 0.2
+PARAMETER num_predict 4096

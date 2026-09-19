@@ -1,0 +1,115 @@
+{
+  "question": "Create a product-market-fit operating memo from Rahul Vohra\u2019s advice.",
+  "mode": "markdown",
+  "session_id": "be44ab3b-3076-4a68-b01b-15baa0b9eeb8",
+  "first_token_seconds": 6.008,
+  "total_seconds": 40.315,
+  "terminal": {
+    "type": "done",
+    "message_id": "0acf2992-cedb-4f0d-9462-3bbc11556d19",
+    "elapsed_ms": 40258
+  },
+  "warnings": [],
+  "history": {
+    "id": "be44ab3b-3076-4a68-b01b-15baa0b9eeb8",
+    "title": "Verification: markdown",
+    "user_metadata": {},
+    "created_at": "2026-09-19T03:02:14.194285+00:00",
+    "updated_at": "2026-09-19T03:02:54.486909+00:00",
+    "messages": [
+      {
+        "id": "2b4ce11a-a5be-433d-a5e4-6abb3f72b04a",
+        "session_id": "be44ab3b-3076-4a68-b01b-15baa0b9eeb8",
+        "role": "user",
+        "content": "Create a product-market-fit operating memo from Rahul Vohra\u2019s advice.",
+        "sources": [],
+        "provider": "ollama",
+        "mode": "markdown",
+        "status": "complete",
+        "created_at": "2026-09-19T03:02:14.238292+00:00"
+      },
+      {
+        "id": "0acf2992-cedb-4f0d-9462-3bbc11556d19",
+        "session_id": "be44ab3b-3076-4a68-b01b-15baa0b9eeb8",
+        "role": "assistant",
+        "content": "# Operating Memo: Product-Market-Fit\n## Table of Contents\n1. [Introduction](#introduction)\n2. [Variables for Product Market Fit](#variables)\n3. [Core Ideas for Product Market Fit](#core-ideas)\n    1. [Measuring Product Market Fit](#measuring-product-market-fit)\n    2. [Optimizing Product Market Fit](#optimizing-product-market-fit)\n    3. [Increasing Product Market Fit](#increasing-product-market-fit)\n    4. [Algorithmic Roadmap for Product Market Fit](#algorithmic-roadmap-for-product-market-fit)\n4. [Key Takeaways and Actionable Steps](#key-takeaways-and-actionable.steps)\n\n## Introduction\n\nRahul Vohra emphasizes the importance of product-market fit, and it's the most critical thing to figure out as a founder. According to him, \"You can measure product market fit. Number two, you can optimize product market fit. Number three, you can systematically increase product market fit. And number four, you can have an algorithm write your roadmap for you.\" [S2]\n\n## Variables for Product Market Fit\n\n- Are you investing cheap cash into starting your product, even with a small team? \n- This variable is discussed by Rahul Vohra, but its exact implications are not specified. [S1]\n- Does your product generate enough revenue from new customers?\n- This variable is relevant, but the question does not specify its relation to product-market fit. [S3]\n\n## Core Ideas for Product Market Fit\n\n### Measuring Product Market Fit\n\n- Ask users: \"How would you feel if you could no longer use this product?\" \n- This approach is discussed by Rahul Vohra, but its implications are not explored in the transcript. [S2]\n- Very disappointed means, \"I'd be devastated. I love this product. I need this product.\" \n- This is a metric used by Sean Ellis to gauge product-market fit, but it is not explicitly stated in the transcript. [S6]\n\n### Optimizing Product Market Fit\n\n- Intense listening to feedback from early users without acting on it, and building what people want.\n- This approach is not explicitly discussed in the transcript. [S4]\n\n### Increasing Product Market Fit\n\n- Deliberate focus on making decisions and building the marketing and positioning instincts, skills, and knowledge for a growth-oriented PM.\n- This approach is not explicitly discussed in the transcript. [S5]\n\n### Algorithmic Roadmap for Product Market Fit\n\n- An algorithm can write your roadmap for increasing product-market fit.\n- This approach is discussed by Rahul Vohra, who references his post on the First Round Review, but its implications are not explored in the transcript. [S1]\n\n## Key Takeaways and Actionable Steps\n\nDue to a lack of sufficient information in Lenny's podcast archive, actionable next steps cannot be generated.",
+        "sources": [
+          {
+            "id": "S1",
+            "guest": "Rahul Vohra",
+            "score": 0.7704352687751606,
+            "title": "Superhuman's secret to success | Rahul Vohra (CEO and founder)",
+            "content": "nboarding every new user, everyone's activated. Amazing.\" So some of the variables you're sharing is, do you have like cheap cash to invest in say, it doesn't have to be 20 people, it could be a few people to start. Then if there's an LTV, ACV element of just are you going to make enough from a new customer? Imagine that's a variable. Is there anything else you think founders should think about?\n\nRahul Vohra (00:52:14):\nAbsolutely. You don't want to lose money doing this. We always made money doing onboarding to be clear, it's just that at a certain point the mass market, whether it for us it's enterprise or all of the prosumers in the world, you hit a top of funnel width, it needs to be wide enough where manually onboarding no longer makes sense.\n\nLenny Rachitsky (00:52:37):\nAwesome. Okay, let's talk about product market fit. I know that everyone, when they think of Rahul, they think product market fit. You wrote this epic First Round post that described the way you guys approach product market fit. We're not going to spend a lot of time on describing it, because people can look it up. So let me just ask you this, what are a couple of things that you think people still don't understand about finding product market fit, getting to product market fit? Considering it's the most important thing you got to figure out as a founder. If you don't find something people want, nothing else matters. Anything there you want to share.\n\nRahul Vohra (00:53:12):\nThe core ideas are still weird enough that I'll start there. Which is number one, you can measure product market fit. Number two, you can optimize product market fit. Number three, you can systematically, even numerically increase product market fit. And number four, you can even have an algorithm write your roadmap for you, and that is a roadmap that is guaranteed to increase product market fit. Now, if that sounds crazy, I would be the first to admit it doesn't seem like that should be true, but go check out that post. I think it is still the most widely shared post on First Round Review, it's called How Superhuman Built an Engine to Find Product Market Fit, or just Google the Superhuman Product Market Fit Engine. And you'll see the algorithm laid out there fully explained and why it works.",
+            "chunk_id": 422,
+            "source_url": "https://www.youtube.com/watch?v=0igjSRZyX-w",
+            "timestamp_ref": "00:52:14"
+          },
+          {
+            "id": "S2",
+            "guest": "Todd Jackson",
+            "score": 0.7399313449859829,
+            "title": "A framework for finding product-market fit | Todd Jackson (First Round Capital)",
+            "content": "very general when it comes to product-market fit. You'll know it when you see it, you'll know it when you have it. It's not specific. And there's so many other startup topics where there is good content on the internet like hiring your first salesperson, running board meetings, stuff that is specific and tactical. But there isn't that much content around product-market fit that is that specific.\n\n(00:07:33):\nAnd so I think that's actually why Rahul from Superhuman is well-known for his approach to finding product-market fit. That was published on the First Round Review in 2018, and it was immediately popular and interesting to people. And I think the reason is because it was specific and because it was tactical and it brought a little bit of the science to something that people thought was just an art. And I think it's why your content is really popular too, Lenny.\n\n(00:07:57):\nYou and I worked on this product validation article together a little while back, and the seven part series that you did on B2B SaaS companies and the PMF benchmarking data that you had, I think it was how long it took to get to a product and a customer and to product-market fit, that was super well-read. And there just isn't that much good specific content about this. But like you said, product-market fit is the single most important thing that your startup does in the first three years and it's just underexplored, it's underexplained as a topic.\n\n(00:08:28):\nSo we felt this was a very important thing to do, something worth focusing on. And I've personally talked to hundreds of founders about this topic. We've published dozens of articles on the First Round Review. We call this our Paths to Product-Market Fit Series where we interview founders about the early days. And I'm just always interested in what are the patterns. If you talk to enough successful founders, and in this case, it can be enterprise founders, and you ask them, \"What did you do in the first six to nine months of running your company, of starting your company? What patterns emerged from that?\" And we have found a very consistent set of patterns, and that's what we decided to base our framework around.",
+            "chunk_id": 14336,
+            "source_url": "https://www.youtube.com/watch?v=yc1Uwhfxacs",
+            "timestamp_ref": "00:07:33"
+          },
+          {
+            "id": "S3",
+            "guest": "Rahul Vohra",
+            "score": 0.7355955400708113,
+            "title": "Superhuman's secret to success | Rahul Vohra (CEO and founder)",
+            "content": "if that sounds crazy, I would be the first to admit it doesn't seem like that should be true, but go check out that post. I think it is still the most widely shared post on First Round Review, it's called How Superhuman Built an Engine to Find Product Market Fit, or just Google the Superhuman Product Market Fit Engine. And you'll see the algorithm laid out there fully explained and why it works.\n\n(00:54:07):\nI'd say the second thing is to get to product market fit, you have to deliberately not act on the feedback of many of your early users. This is at the same time as listening to people intensely and building what people want. That's what we're here to do, is to make something that people want. But it can't be all people. It can't be everybody. The question becomes, how do you listen to them? And then even of what they say, what do you pay attention to and what don't you? All of that's covered in the Product Market Fit Engine.\n\nLenny Rachitsky (00:54:45):\nOkay, I got to follow this thought on algorithmically building your roadmap to increase product market fit. Talk about how one would do that.\n\nRahul Vohra (00:54:55):\nWell, that's really the meat of the engine. Let's see if I can condense it here in a very easy to grok fashion. Let's assume for the sake of argument, that you can put a number on product market fit, and it turns out you can. Very simply, you're going to ask people, \"How would you feel if you can no longer use this product?\" You give them three responses. One of them is very disappointed, the other is somewhat disappointed, and the other is not disappointed. Very disappointed means, \"I'd be devastated. I love this product. I need this product.\"\n\n(00:55:30):\nWhat Sean Ellis found, Sean Ellis, if you don't know him, is the guy who coined the term growth hacker, and he instrumented, benchmarked this initial question. What he found, is that the companies that struggled to grow almost always had less than 40%, very disappointed. Whereas the companies that grew the fastest almost always had more than 40%, very disappointed. And this question, this metric is way more predictive of success than something, for example, like net promoter score.",
+            "chunk_id": 423,
+            "source_url": "https://www.youtube.com/watch?v=0igjSRZyX-w",
+            "timestamp_ref": "00:54:07"
+          },
+          {
+            "id": "S4",
+            "guest": "Gaurav Misra",
+            "score": 0.7342178338400956,
+            "title": "Mastering onboarding | Lauryn Isford (Head of Growth at Airtable)",
+            "content": "unction should understand every other function deeply as much as possible and maybe even to the level where they can operate in that function. And that just increases the likelihood that all decisions being made in the company at the micro level will be optimized for all possible parts of the funnel that different people are essentially looking after. That's something we think about quite a bit.\n\nLenny Rachitsky (00:54:44):\nI completely agree with that take. It's interesting that at Airbnb, Brian was famous for changing the titles of all product managers to product marketing manager for exactly this point because he's like-\n\nGaurav Misra (00:54:56):\nMakes sense.\n\nLenny Rachitsky (00:54:57):\n... you should be doing the marketing, you shouldn't just be building the thing. And to me, I've always assumed as a PM, your job is for this thing to grow and to get adopted and be loved.\n\nGaurav Misra (00:55:07):\nOf course.\n\nLenny Rachitsky (00:55:07):\nSo it's interesting people don't already think of it that way.\n\nGaurav Misra (00:55:10):\nI agree.\n\nLenny Rachitsky (00:55:11):\nBut obviously, it's hard to learn the skills of being awesome and paid growth and SEO and product marketing, messaging, positioning, but I completely agree. That's such an important element of building a product. You're not just building a thing, hope it works. Goodbye. So I love that that's how you think about it. And so I guess when you hire PMs, it sounds like you look for marketing instinct and some experiences.\n\nGaurav Misra (00:55:31):\n100%. And at least the ability and instinct to be able to learn it.",
+            "chunk_id": 5439,
+            "source_url": "https://www.youtube.com/watch?v=dLku0AiGPVA",
+            "timestamp_ref": "00:54:44"
+          },
+          {
+            "id": "S5",
+            "guest": "Vikrama Dhiman",
+            "score": 0.7308368774238425,
+            "title": "A framework for PM skill development | Vikrama Dhiman (Gojek)",
+            "content": "# A framework for PM skill development | Vikrama Dhiman (Gojek)\n\n## Transcript\n\nLenny Rachitsky (00:00:00):\nYour name has come up more times than almost any other product person when I ask people for their favorite product leaders in Asia.\n\nVikrama Dhiman (00:00:07):\nI created a career growth framework for product managers, which comprises of three things. What you produce, what you bring to the table, and what's your operating model.\n\nLenny Rachitsky (00:00:18):\nYour advice is early in your career, focus on just getting stuff out and done.\n\nVikrama Dhiman (00:00:22):\nCan you show me your last PRD? Can you show me the last product note that you sent? Can you show me the product strategy doc? You must have that impact through the artifacts that you work on.\n\nLenny Rachitsky (00:00:32):\nI'm curious what you found most impedes people's career growth.\n\nVikrama Dhiman (00:00:37):\nHow you view change, whether you are focusing on things you control, and third is how you see yourself. The moment you are able to correct those stories, you may be back on the growth path again.\n\nLenny Rachitsky (00:00:52):\nToday, my guest is Vikrama Dhiman. Vikrama heads all things product at Gojek, including product management, design, program management, research and insights with teams across India, Singapore and Indonesia. He has previously worked at companies like Directi, Airtel, MakeMyTrip and WizIQ and is among the most well-known product leaders in Asia. When I asked people who their favorite product leader is in Asia, Vikrama's name has come up almost more than anyone else's. We chat about how to move into product management, how to be a great product manager, how product managers often shoot themselves in the foot, and so much more. With that, I bring you Vikrama Dhiman after a short word from our sponsors. And if you enjoy this podcast, don't forget to subscribe and follow it in your favorite podcasting app or YouTube. It's the best way to avoid missing future episodes and it helps the podcast tremendously.",
+            "chunk_id": 14871,
+            "source_url": "https://www.youtube.com/watch?v=ImSvm11GR0Y",
+            "timestamp_ref": "00:00:00"
+          },
+          {
+            "id": "S6",
+            "guest": "Sean Ellis",
+            "score": 0.7249174013881574,
+            "title": "The original growth hacker reveals his secrets | Sean Ellis (author of \u201cHacking Growth\u201d)",
+            "content": "incredible. This was everything I was hoping it'd be. I feel like we collected so much wisdom here for folks to them figure out product market fit, find product market fit, iterate, grow their products. So happy we did this. Two final questions. Where can folks find stuff that you're up to if they want to learn more and maybe work with you in various ways? And how can listeners be useful to you?\n\nSean Ellis (01:42:00):\nAwesome. Yeah, so Seanellis.me is the website where I kind of link to all the things that I'm doing. And so that would be one place where, and there's contact forms on there if anyone wants to reach out. Obviously LinkedIn people can contact me there. And then I did mention GoPractice. So gopractice.io. Really cool way to learn growth through a simulated environment of being able to try to grow products. So check out GoPractice and maybe go to Seanellis.me. When this comes out, I'll put a special offer on there for Lenny's listeners so you can save some money.\n\nLenny Rachitsky (01:42:36):\nAnd there's also a LLM AI kind of,-\n\nSean Ellis (01:42:40):\nI wasn't directly involved on that one, but there's yeah, there's some other really cool stuff that Oleg and the team are doing. Data-driven product management, and the user growth programs are the ones that I helped with.\n\nLenny Rachitsky (01:42:53):\nAwesome. And then for folks, if they're wondering, do you do advising? How do you work with companies in case they're like, hey, I need Sean.\n\nSean Ellis (01:43:00):\nYeah, I mean, so the sweet spot for me on companies that I go hands-on with are ideally pretty early just after they get to product market fit and now you know how to measure it. So if you're kind of pre-scale, but you're seeing that 40%, or even if you're a bit earlier than that, we can start talking earlier. But to me, that's my favorite time to get in there, build it right from the beginning. It's so hard to retroactively do these things. And I'll go in for three to six months and I'm all in full-time, one of the team trying to really help build traction in the business. I do one of those every maybe year or maybe every year or two because I purposely burn myself out and then have fun doing more lecturing and workshops and stuff.\n\nLenny Rachitsky (01:43:50):\nAwesome. Well, you might get a flood of requests after this comes out. Hope you're ready. Sean, thank you so much for being here.",
+            "chunk_id": 13605,
+            "source_url": "https://www.youtube.com/watch?v=VjJ6xcv7e8s",
+            "timestamp_ref": "01:42:00"
+          }
+        ],
+        "provider": "ollama",
+        "mode": "markdown",
+        "status": "complete",
+        "created_at": "2026-09-19T03:02:54.486909+00:00"
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "5c78f54c-642f-47b9-a26b-be5d59a66171",
+        "message_id": "0acf2992-cedb-4f0d-9462-3bbc11556d19",
+        "artifact_type": "markdown",
+        "title": "Create a product-market-fit operating memo from Rahul Vohra\u2019s advice.",
+        "content": "# Operating Memo: Product-Market-Fit\n## Table of Contents\n1. [Introduction](#introduction)\n2. [Variables for Product Market Fit](#variables)\n3. [Core Ideas for Product Market Fit](#core-ideas)\n    1. [Measuring Product Market Fit](#measuring-product-market-fit)\n    2. [Optimizing Product Market Fit](#optimizing-product-market-fit)\n    3. [Increasing Product Market Fit](#increasing-product-market-fit)\n    4. [Algorithmic Roadmap for Product Market Fit](#algorithmic-roadmap-for-product-market-fit)\n4. [Key Takeaways and Actionable Steps](#key-takeaways-and-actionable.steps)\n\n## Introduction\n\nRahul Vohra emphasizes the importance of product-market fit, and it's the most critical thing to figure out as a founder. According to him, \"You can measure product market fit. Number two, you can optimize product market fit. Number three, you can systematically increase product market fit. And number four, you can have an algorithm write your roadmap for you.\" [S2]\n\n## Variables for Product Market Fit\n\n- Are you investing cheap cash into starting your product, even with a small team? \n- This variable is discussed by Rahul Vohra, but its exact implications are not specified. [S1]\n- Does your product generate enough revenue from new customers?\n- This variable is relevant, but the question does not specify its relation to product-market fit. [S3]\n\n## Core Ideas for Product Market Fit\n\n### Measuring Product Market Fit\n\n- Ask users: \"How would you feel if you could no longer use this product?\" \n- This approach is discussed by Rahul Vohra, but its implications are not explored in the transcript. [S2]\n- Very disappointed means, \"I'd be devastated. I love this product. I need this product.\" \n- This is a metric used by Sean Ellis to gauge product-market fit, but it is not explicitly stated in the transcript. [S6]\n\n### Optimizing Product Market Fit\n\n- Intense listening to feedback from early users without acting on it, and building what people want.\n- This approach is not explicitly discussed in the transcript. [S4]\n\n### Increasing Product Market Fit\n\n- Deliberate focus on making decisions and building the marketing and positioning instincts, skills, and knowledge for a growth-oriented PM.\n- This approach is not explicitly discussed in the transcript. [S5]\n\n### Algorithmic Roadmap for Product Market Fit\n\n- An algorithm can write your roadmap for increasing product-market fit.\n- This approach is discussed by Rahul Vohra, who references his post on the First Round Review, but its implications are not explored in the transcript. [S1]\n\n## Key Takeaways and Actionable Steps\n\nDue to a lack of sufficient information in Lenny's podcast archive, actionable next steps cannot be generated.",
+        "created_at": "2026-09-19T03:02:54.486909+00:00"
+      }
+    ]
+  }
+}
